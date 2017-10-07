@@ -7,6 +7,6 @@ Simple Machine Learning Implementation With Python
    :maxdepth: 4
 
    Multinomial_Naive_Bayes
-   Normal_Naive_Bayes
+   Naive_Bayes_With_Sklearn
    license
    contact

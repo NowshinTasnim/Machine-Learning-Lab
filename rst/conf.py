@@ -35,7 +35,9 @@ sys.path.append('D:/Machine-Learning-Lab/Naive Bayes')
 # ones.
 extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.githubpages',
-    'sphinx.ext.imgmath']
+    'sphinx.ext.imgmath',
+    'nbsphinx',
+    'IPython.sphinxext.ipython_console_highlighting']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

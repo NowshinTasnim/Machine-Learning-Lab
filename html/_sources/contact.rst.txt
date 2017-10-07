@@ -1,7 +1,7 @@
 Contact
 =======
 
-.. image:: D:/Machine-Learning-Lab/rst/Shauqi.jpg
+.. image:: Shauqi.jpg
 
 
 Mahmudul Hasan Shauqi,

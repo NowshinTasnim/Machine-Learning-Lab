@@ -1,18 +1,18 @@
-Multinomial\_Naive\_Bayes module
-================================
+Multinomial\_Naive\_Bayes
+=========================
 
 
-.. image:: D:/Machine-Learning-Lab/rst/1.PNG
+.. image:: 1.PNG
 
-.. image:: D:/Machine-Learning-Lab/rst/2.PNG
+.. image:: 2.PNG
 
-.. image:: D:/Machine-Learning-Lab/rst/4.PNG
+.. image:: 4.PNG
 
 
 A worked example is given below
 
 
-.. image:: D:/Machine-Learning-Lab/rst/3.PNG
+.. image:: 3.PNG
 
 
 

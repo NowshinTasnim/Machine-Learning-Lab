@@ -1,7 +1,0 @@
-Naive\_Bayes\_Bishnu\_Sir module
-================================
-
-.. automodule:: Naive_Bayes_Bishnu_Sir
-    :members:
-    :undoc-members:
-    :show-inheritance:

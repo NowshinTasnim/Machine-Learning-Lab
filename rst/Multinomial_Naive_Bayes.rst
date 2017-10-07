@@ -1,5 +1,5 @@
-Multinomial\_Naive\_Bayes module
-================================
+Multinomial\_Naive\_Bayes
+=========================
 
 
 .. image:: 1.PNG
