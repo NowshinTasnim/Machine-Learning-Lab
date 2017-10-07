@@ -4,17 +4,17 @@ In this Notebook Gaussian Naive Bayes is used on wisconsin cancer dataset to cla
 
 In the following pandas is used for showing our dataset. We are going to download the csv file and load it to pandas dataframe
 
-.. code:: ipython3
+.. code:: pycon
 
     import pandas as pd
 
-.. code:: ipython3
+.. code:: pycon
 
     df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data', header=None)
 
 The segment of df is given below. Which shows Upper 5 rows of our data
 
-.. code:: ipython3
+.. code:: pycon
 
     df.head()
 
@@ -196,11 +196,11 @@ So from the df.head() function you can see that column 1 contains the label whic
 
 So we are going to prepare our training set in the following lines. X will contain featuresets and y will contain labels of each row
 
-.. code:: ipython3
+.. code:: pycon
 
     X = df.loc[:, 2:].values
 
-.. code:: ipython3
+.. code:: pycon
 
     y = df.loc[:, 1].values
 
@@ -208,7 +208,7 @@ After that we have to encode labels of y for our training purpose
 
 Before encoding
 
-.. code:: ipython3
+.. code:: pycon
 
     y
 
@@ -264,21 +264,21 @@ Before encoding
 
 
 
-.. code:: ipython3
+.. code:: pycon
 
     from sklearn.preprocessing import LabelEncoder
 
-.. code:: ipython3
+.. code:: pycon
 
     le = LabelEncoder()
 
-.. code:: ipython3
+.. code:: pycon
 
     y = le.fit_transform(y)
 
 After encoding M = 1 and B = 0.
 
-.. code:: ipython3
+.. code:: pycon
 
     y
 
@@ -317,43 +317,43 @@ After encoding M = 1 and B = 0.
 
 In the following segment i'm going to split the dataset into Training and Test set with 80:20 ratio
 
-.. code:: ipython3
+.. code:: pycon
 
     from sklearn.model_selection import train_test_split
 
-.. code:: ipython3
+.. code:: pycon
 
     X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.20, random_state=1)
 
 And don't forget to standardize your featuresets
 
-.. code:: ipython3
+.. code:: pycon
 
     from sklearn.preprocessing import StandardScaler
 
-.. code:: ipython3
+.. code:: pycon
 
     stdsc = StandardScaler()
 
-.. code:: ipython3
+.. code:: pycon
 
     X_train_std = stdsc.fit_transform(X_train)
 
-.. code:: ipython3
+.. code:: pycon
 
     X_test_std = stdsc.transform(X_test)
 
 So here we are. Time for fitting our estimator with the training data.
 
-.. code:: ipython3
+.. code:: pycon
 
     from sklearn.naive_bayes import GaussianNB
 
-.. code:: ipython3
+.. code:: pycon
 
     clf = GaussianNB()
 
-.. code:: ipython3
+.. code:: pycon
 
     clf.fit(X_train_std, y_train)
 
@@ -366,7 +366,7 @@ So here we are. Time for fitting our estimator with the training data.
 
 
 
-.. code:: ipython3
+.. code:: pycon
 
     y_pred = clf.predict(X_test_std)
 
@@ -374,11 +374,11 @@ y\_pred holds the predicted label of your test set.
 
 Finally time to see the accuracy of our estimator.
 
-.. code:: ipython3
+.. code:: pycon
 
     from sklearn.metrics import accuracy_score
 
-.. code:: ipython3
+.. code:: pycon
 
     accuracy_score(y_true=y_test, y_pred=y_pred)
 
