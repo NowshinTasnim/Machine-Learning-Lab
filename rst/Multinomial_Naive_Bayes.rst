@@ -2,17 +2,17 @@ Multinomial\_Naive\_Bayes module
 ================================
 
 
-.. image:: rst/1.PNG
+.. image:: 1.PNG
 
-.. image:: rst/2.PNG
+.. image:: 2.PNG
 
-.. image:: rst/4.PNG
+.. image:: 4.PNG
 
 
 A worked example is given below
 
 
-.. image:: rst/3.PNG
+.. image:: 3.PNG
 
 
 
