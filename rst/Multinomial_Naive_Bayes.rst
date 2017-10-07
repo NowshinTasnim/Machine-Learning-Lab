@@ -2,17 +2,17 @@ Multinomial\_Naive\_Bayes module
 ================================
 
 
-.. image:: D:/Machine-Learning-Lab/rst/1.PNG
+.. image:: rst/1.PNG
 
-.. image:: D:/Machine-Learning-Lab/rst/2.PNG
+.. image:: rst/2.PNG
 
-.. image:: D:/Machine-Learning-Lab/rst/4.PNG
+.. image:: rst/4.PNG
 
 
 A worked example is given below
 
 
-.. image:: D:/Machine-Learning-Lab/rst/3.PNG
+.. image:: rst/3.PNG
 
 
 
