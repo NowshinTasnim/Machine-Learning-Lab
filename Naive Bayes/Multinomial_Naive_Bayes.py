@@ -18,8 +18,6 @@ class Multinnomial_Naive_Bayes(object):
     '''
     Multinomial Naive Bayes Classifier.
 
-    Parameters
-    ------------
     chinese_data : list
                     For holding strings of chinese Class
     japanese_data : list
@@ -53,8 +51,10 @@ class Multinnomial_Naive_Bayes(object):
     def Prior_Probability(self, filename):
         '''
         Estimates Prior Probability of each class
-        :param filename: csv file of Training Dataset
-        :return: self
+
+        filename : 
+        			csv file of Training Dataset
+        return : self
         '''
         cCount = 0
         jCount = 0
@@ -74,7 +74,8 @@ class Multinnomial_Naive_Bayes(object):
     def likelihood(self):
         '''
         Estimates Likelihood of each word of each class
-        :return: self
+
+        return: self
         '''
         for row in self.chinese_data:
             for word in row.split():
@@ -98,8 +99,10 @@ class Multinnomial_Naive_Bayes(object):
     def fit(self, filename):
         '''
         Calls Prior_Probability and likelihood function
-        :param filename: csv file of Training Dataset
-        :return: self
+
+        filename : 
+        		   csv file of Training Dataset
+        return : self
         '''
         self.Prior_Probability(filename)
         self.likelihood()
@@ -108,8 +111,11 @@ class Multinnomial_Naive_Bayes(object):
         '''
         After getting the string it predicts the value and classifies it according to
         majority rule.
-        :param str: string, Contains test string for prediction
-        :return: string, returns which class the test string belongs
+
+        str : string 
+        	   Contains test string for prediction
+        return: string 
+        		 returns which class the test string belongs
         '''
         prb_in_c = 0
         prb_in_j = 0

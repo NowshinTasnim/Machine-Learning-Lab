@@ -1,0 +1,323 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Multinomial_Naive_Bayes module &#8212; Machine Learning 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Normal_Naive_Bayes module" href="Normal_Naive_Bayes.html" />
+    <link rel="prev" title="Simple Machine Learning Implementation With Python" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="multinomial-naive-bayes-module">
+<h1>Multinomial_Naive_Bayes module<a class="headerlink" href="#multinomial-naive-bayes-module" title="Permalink to this headline">¶</a></h1>
+<img alt="_images/1.PNG" src="_images/1.PNG" />
+<img alt="_images/2.PNG" src="_images/2.PNG" />
+<img alt="_images/4.PNG" src="_images/4.PNG" />
+<p>A worked example is given below</p>
+<img alt="_images/3.PNG" src="_images/3.PNG" />
+<p>Here is the Training.csv <a class="reference external" href="https://github.com/Shauqi/Machine-Learning-Lab/blob/master/Naive%20Bayes/Training.csv/">link</a>.</p>
+<p>Be sure to store it in the same directory or edit the code according to your file path.</p>
+<p>Here is the code implementation of Multinomial Naive Bayes:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+
+<span class="k">class</span> <span class="nc">Multinnomial_Naive_Bayes</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Multinomial Naive Bayes Classifier.</span>
+
+<span class="sd">    chinese_data : list</span>
+<span class="sd">                    For holding strings of chinese Class</span>
+<span class="sd">    japanese_data : list</span>
+<span class="sd">                     For holding strings of Japanese Class</span>
+<span class="sd">    prior_prob_c : float</span>
+<span class="sd">                    Calculated Prior Probability of Chinese Class</span>
+<span class="sd">    prior_prob_j : float</span>
+<span class="sd">                    Calculated Prior Probability of Japanese Class</span>
+<span class="sd">    llh_c : dict</span>
+<span class="sd">             count of each word in Chinese Class is saved as {word: count(word)}</span>
+<span class="sd">    llh_j : dict</span>
+<span class="sd">             count of each word in Japanese Class is saved as {word: count(word)}</span>
+<span class="sd">    words_in_c: int</span>
+<span class="sd">                 Total words in Chinese Class</span>
+<span class="sd">    words_in_j: int</span>
+<span class="sd">                 Total words in Japanese Class</span>
+<span class="sd">    v_count: int</span>
+<span class="sd">              Number of different words</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chinese_data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">japanese_data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prior_prob_c</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prior_prob_j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">llh_c</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">llh_j</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">words_in_c</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">words_in_j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">Prior_Probability</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Estimates Prior Probability of each class</span>
+
+<span class="sd">        filename :</span>
+<span class="sd">                                csv file of Training Dataset</span>
+<span class="sd">        return : self</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">cCount</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">jCount</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">docs</span><span class="p">:</span>
+            <span class="n">doc</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">chinese_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="n">cCount</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">japanese_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="n">jCount</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prior_prob_c</span> <span class="o">=</span> <span class="n">cCount</span><span class="o">/</span><span class="p">(</span><span class="n">cCount</span><span class="o">+</span><span class="n">jCount</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prior_prob_j</span> <span class="o">=</span> <span class="n">jCount</span><span class="o">/</span><span class="p">(</span><span class="n">cCount</span><span class="o">+</span><span class="n">jCount</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">likelihood</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Estimates Likelihood of each word of each class</span>
+
+<span class="sd">        return: self</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">chinese_data</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">row</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">llh_c</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">llh_c</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">llh_c</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">word</span><span class="p">:</span><span class="mi">1</span><span class="p">})</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">v_count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">words_in_c</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">japanese_data</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">row</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">llh_j</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">llh_j</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">llh_j</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">word</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+                    <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">llh_c</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">v_count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">words_in_j</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Calls Prior_Probability and likelihood function</span>
+
+<span class="sd">        filename :</span>
+<span class="sd">                           csv file of Training Dataset</span>
+<span class="sd">        return : self</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Prior_Probability</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        After getting the string it predicts the value and classifies it according to</span>
+<span class="sd">        majority rule.</span>
+
+<span class="sd">        str : string</span>
+<span class="sd">                   Contains test string for prediction</span>
+<span class="sd">        return: string</span>
+<span class="sd">                         returns which class the test string belongs</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">prb_in_c</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">prb_in_j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">llh_c</span> <span class="ow">and</span> <span class="n">word</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">llh_j</span><span class="p">:</span>
+                <span class="n">prb_in_c</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">llh_c</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">words_in_c</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_count</span><span class="p">))</span>
+                <span class="n">prb_in_j</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">llh_j</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">words_in_j</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_count</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">word</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">llh_c</span> <span class="ow">and</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">llh_j</span><span class="p">:</span>
+                <span class="n">prb_in_c</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">llh_c</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">words_in_c</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_count</span><span class="p">))</span>
+                <span class="n">prb_in_j</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">words_in_j</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_count</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">llh_c</span> <span class="ow">and</span> <span class="n">word</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">llh_j</span><span class="p">:</span>
+                <span class="n">prb_in_c</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">words_in_c</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">v_count</span><span class="p">))</span>
+                <span class="n">prb_in_j</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">llh_j</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">words_in_j</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_count</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">prb_in_c</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">words_in_c</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_count</span><span class="p">))</span>
+                <span class="n">prb_in_j</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">words_in_j</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_count</span><span class="p">))</span>
+
+        <span class="n">prb_in_c</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prior_prob_c</span><span class="p">)</span>
+        <span class="n">prb_in_j</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prior_prob_j</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">prb_in_c</span> <span class="o">&gt;</span> <span class="n">prb_in_j</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Class: Chinese&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Class: Japanese&quot;</span>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">nb</span> <span class="o">=</span> <span class="n">Multinnomial_Naive_Bayes</span><span class="p">()</span>
+    <span class="n">nb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="s1">&#39;Training.csv&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">nb</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="s2">&quot;Chinese Chinese Chinese Tokyo Japan&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<span class="target" id="module-Multinomial_Naive_Bayes"></span><dl class="class">
+<dt id="Multinomial_Naive_Bayes.Multinnomial_Naive_Bayes">
+<em class="property">class </em><code class="descclassname">Multinomial_Naive_Bayes.</code><code class="descname">Multinnomial_Naive_Bayes</code><a class="headerlink" href="#Multinomial_Naive_Bayes.Multinnomial_Naive_Bayes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Multinomial Naive Bayes Classifier.</p>
+<dl class="docutils">
+<dt>chinese_data <span class="classifier-delimiter">:</span> <span class="classifier">list</span></dt>
+<dd>For holding strings of chinese Class</dd>
+<dt>japanese_data <span class="classifier-delimiter">:</span> <span class="classifier">list</span></dt>
+<dd>For holding strings of Japanese Class</dd>
+<dt>prior_prob_c <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd>Calculated Prior Probability of Chinese Class</dd>
+<dt>prior_prob_j <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd>Calculated Prior Probability of Japanese Class</dd>
+<dt>llh_c <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
+<dd>count of each word in Chinese Class is saved as {word: count(word)}</dd>
+<dt>llh_j <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
+<dd>count of each word in Japanese Class is saved as {word: count(word)}</dd>
+<dt>words_in_c: int</dt>
+<dd>Total words in Chinese Class</dd>
+<dt>words_in_j: int</dt>
+<dd>Total words in Japanese Class</dd>
+<dt>v_count: int</dt>
+<dd>Number of different words</dd>
+</dl>
+<dl class="method">
+<dt id="Multinomial_Naive_Bayes.Multinnomial_Naive_Bayes.Prior_Probability">
+<code class="descname">Prior_Probability</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#Multinomial_Naive_Bayes.Multinnomial_Naive_Bayes.Prior_Probability" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates Prior Probability of each class</p>
+<dl class="docutils">
+<dt>filename <span class="classifier-delimiter">:</span> <span class="classifier"></span></dt>
+<dd>csv file of Training Dataset</dd>
+</dl>
+<p>return : self</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Multinomial_Naive_Bayes.Multinnomial_Naive_Bayes.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#Multinomial_Naive_Bayes.Multinnomial_Naive_Bayes.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls Prior_Probability and likelihood function</p>
+<dl class="docutils">
+<dt>filename <span class="classifier-delimiter">:</span> <span class="classifier"></span></dt>
+<dd>csv file of Training Dataset</dd>
+</dl>
+<p>return : self</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Multinomial_Naive_Bayes.Multinnomial_Naive_Bayes.likelihood">
+<code class="descname">likelihood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Multinomial_Naive_Bayes.Multinnomial_Naive_Bayes.likelihood" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates Likelihood of each word of each class</p>
+<p>return: self</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Multinomial_Naive_Bayes.Multinnomial_Naive_Bayes.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>str</em><span class="sig-paren">)</span><a class="headerlink" href="#Multinomial_Naive_Bayes.Multinnomial_Naive_Bayes.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>After getting the string it predicts the value and classifies it according to
+majority rule.</p>
+<dl class="docutils">
+<dt>str <span class="classifier-delimiter">:</span> <span class="classifier">string </span></dt>
+<dd>Contains test string for prediction</dd>
+<dt>return: string </dt>
+<dd>returns which class the test string belongs</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Machine Learning</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Multinomial_Naive_Bayes module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Normal_Naive_Bayes.html">Normal_Naive_Bayes module</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Simple Machine Learning Implementation With Python</a></li>
+      <li>Next: <a href="Normal_Naive_Bayes.html" title="next chapter">Normal_Naive_Bayes module</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Mahmudul Hasan Shauqi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/Multinomial_Naive_Bayes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
