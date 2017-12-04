@@ -30,7 +30,7 @@ def fitness(single_chrom):
         val = -val
 
     chrom_val = val
-    val = -(val*val)
+    val = -(val*val) + 5
     return val, chrom_val
 
 

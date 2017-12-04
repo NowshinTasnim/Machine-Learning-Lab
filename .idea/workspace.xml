@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="68510bbd-3e00-4c4a-8ae3-27dd56338b6f" name="Default" comment="" />
+    <list default="true" id="68510bbd-3e00-4c4a-8ae3-27dd56338b6f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ParticleSwarmOptimization/PSO.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ParticleSwarmOptimization/PSO2.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Genetic_Algorithm/GA_Implementation.py" afterPath="$PROJECT_DIR$/Genetic_Algorithm/GA_Implementation.py" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,14 +16,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TravellingSalesMan.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Genetic_Algorithm/TravellingSalesMan.py">
+      <file leaf-file-name="PSO.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ParticleSwarmOptimization/PSO.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="168" column="0" lean-forward="false" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#34#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="187">
+              <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PSO2.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ParticleSwarmOptimization/PSO2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="731">
+              <caret line="43" column="22" lean-forward="false" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -53,9 +66,11 @@
         <option value="$PROJECT_DIR$/Naive Bayes/Normal_Naive_Bayes.py" />
         <option value="$PROJECT_DIR$/Naive Bayes/Multinomial_Naive_Bayes.py" />
         <option value="$PROJECT_DIR$/conf.py" />
-        <option value="$PROJECT_DIR$/Genetic_Algorithm/GA_Implementation.py" />
         <option value="$PROJECT_DIR$/Naive Bayes/Practice.py" />
         <option value="$PROJECT_DIR$/Genetic_Algorithm/TravellingSalesMan.py" />
+        <option value="$PROJECT_DIR$/Genetic_Algorithm/GA_Implementation.py" />
+        <option value="$PROJECT_DIR$/ParticleSwarmOptimization/PSO2.py" />
+        <option value="$PROJECT_DIR$/ParticleSwarmOptimization/PSO.py" />
       </list>
     </option>
   </component>
@@ -80,8 +95,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -93,6 +108,11 @@
               <item name="Machine-Learning-Lab" type="b2602c69:ProjectViewProjectNode" />
               <item name="Machine-Learning-Lab" type="462c0819:PsiDirectoryNode" />
               <item name="Genetic_Algorithm" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Machine-Learning-Lab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Machine-Learning-Lab" type="462c0819:PsiDirectoryNode" />
+              <item name="ParticleSwarmOptimization" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -116,7 +136,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.TravellingSalesMan">
+  <component name="RunManager" selected="Python.PSO">
     <configuration name="GA_Implementation" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -134,36 +154,51 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="Naive_Bayes" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Nosetests in PSO.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ParticleSwarmOptimization" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Machine-Learning-Lab" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/ParticleSwarmOptimization/PSO.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration name="PSO" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Naive Bayes" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ParticleSwarmOptimization" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Machine-Learning-Lab" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Naive Bayes/Naive_Bayes.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ParticleSwarmOptimization/PSO.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="Practice" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="PSO2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Naive Bayes" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ParticleSwarmOptimization" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Machine-Learning-Lab" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Naive Bayes/Practice.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ParticleSwarmOptimization/PSO2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -185,18 +220,20 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="Python.Naive_Bayes" />
-      <item index="1" class="java.lang.String" itemvalue="Python.GA_Implementation" />
-      <item index="2" class="java.lang.String" itemvalue="Python.Practice" />
-      <item index="3" class="java.lang.String" itemvalue="Python.TravellingSalesMan" />
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Python.GA_Implementation" />
+      <item index="1" class="java.lang.String" itemvalue="Python.TravellingSalesMan" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests in PSO.py" />
+      <item index="3" class="java.lang.String" itemvalue="Python.PSO" />
+      <item index="4" class="java.lang.String" itemvalue="Python.PSO2" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.TravellingSalesMan" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Practice" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.PSO" />
+        <item index="1" class="java.lang.String" itemvalue="Python.PSO2" />
         <item index="2" class="java.lang.String" itemvalue="Python.GA_Implementation" />
-        <item index="3" class="java.lang.String" itemvalue="Python.Naive_Bayes" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests in PSO.py" />
+        <item index="4" class="java.lang.String" itemvalue="Python.TravellingSalesMan" />
       </list>
     </recent_temporary>
   </component>
@@ -212,6 +249,14 @@
       <updated>1507287258001</updated>
     </task>
     <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="Nosetests_in_PSO_py - 2017.11.27 at 13h 04m 19s.xml">
+      <configuration name="Nosetests in PSO.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_PSO_py - 2017.11.27 at 13h 13m 27s.xml">
+      <configuration name="Nosetests in PSO.py" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -252,18 +297,66 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="108" />
+      <option name="time" value="130" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ParticleSwarmOptimization/PSO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ParticleSwarmOptimization/PSO2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Thesis/getting_Best_indexes_from_graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Thesis/getting_Best_indexes_from_graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ParticleSwarmOptimization/PSO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Genetic_Algorithm/GA_Implementation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1785">
+          <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Genetic_Algorithm/TravellingSalesMan.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Genetic_Algorithm/TravellingSalesMan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -341,13 +434,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Naive Bayes/Normal_Naive_Bayes.py" />
     <entry file="file://$PROJECT_DIR$/Naive Bayes/Naive_Bayes_Bishnu_Sir.py" />
-    <entry file="file://$PROJECT_DIR$/Genetic_Algorithm/GA_Implementation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="37" column="29" lean-forward="false" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Anaconda/Lib/sre_parse.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -360,9 +446,36 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="168" column="0" lean-forward="false" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Genetic_Algorithm/GA_Implementation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1785">
+          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Thesis/getting_Best_indexes_from_graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ParticleSwarmOptimization/PSO2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="22" lean-forward="false" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ParticleSwarmOptimization/PSO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
